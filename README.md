@@ -25,14 +25,14 @@ Laptop with at least 16 Gb memory (recommended 16 Gb, ideally 32 Gb)
     (only if using Windows 10 or Windows 8 Pro) Disable Hyper-V, see instructions to disable here: https://www.poweronplatforms.com/enable-disable-hyper-v-windows-10-8/
     Check installation with the command vagrant -v'
 
-    4. Postman (V 7.19.1 (7.19.1) or higher)
+   4. Postman (V 7.19.1 (7.19.1) or higher)
 
     Instructions to install here: https://www.postman.com/
     
-    5. Git ( v 2.29.2 or higher)
+   5. Git ( v 2.29.2 or higher)
     Instructions to install here: https://www.atlassian.com/git/tutorials/install-git
     
-    6. Ansible (v 2.7.5, or higher)
+   6. Ansible (v 2.7.5, or higher)
 
     Instructions to install here: https://docs.ansible.com/
     Check installation with the command ansible --version
