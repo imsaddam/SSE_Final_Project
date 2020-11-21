@@ -1,38 +1,38 @@
-# Software Engineering Environments miniproject instruction 
+# ******** Software Engineering Environments miniproject instruction ************ 
 
 
 ************ Assumptions/Pre-requisites *******************
 
-***Hardware
+**** Hardware
 
 Laptop with at least 16 Gb memory (recommended 16 Gb, ideally 32 Gb)
 
 *** Software
 
 
-    Maven (v 3.6.2, or higher)
+   1. Maven (v 3.6.2, or higher)
 
     Instructions to install here: https://maven.apache.org/download.cgi
     Check installation with the command mvn -version
 
-    VirtualBox(v 6.0, or higher)
+   2. VirtualBox(v 6.0, or higher)
 
     Instructions to install here: https://www.virtualbox.org/wiki/Downloads
 
-    Vagrant (v 2.2.5, or higher)
+   3. Vagrant (v 2.2.5, or higher)
 
     Instructions to install here: https://www.vagrantup.com/downloads.html
     (only if using Windows 10 or Windows 8 Pro) Disable Hyper-V, see instructions to disable here: https://www.poweronplatforms.com/enable-disable-hyper-v-windows-10-8/
     Check installation with the command vagrant -v'
 
-    Postman (V 7.19.1 (7.19.1) or higher)
+    4. Postman (V 7.19.1 (7.19.1) or higher)
 
     Instructions to install here: https://www.postman.com/
     
-    Git
+    5. Git ( v 2.29.2 or higher)
+    Instructions to install here: https://www.atlassian.com/git/tutorials/install-git
     
-    
-    Ansible (v 2.7.5, or higher)
+    6. Ansible (v 2.7.5, or higher)
 
     Instructions to install here: https://docs.ansible.com/
     Check installation with the command ansible --version
@@ -53,13 +53,19 @@ Laptop with at least 16 Gb memory (recommended 16 Gb, ideally 32 Gb)
 
 	Command : `sudo vagrant up`
 
-	3- Connect to GitLab
+### **** Test Case **** 
 
-	Open `http://192.168.33.9/gitlab` in your browser.
+Initial conditions: none
 
+Test Steps:
+	1. Go to http://192.168.33.9/gitlab
+
+Post conditions:
+	- GitLab is accessible at the indicated URL
+	- It asks to enter password for the root creedentials
+	
+- Set password for admin user
 	You will be asked to provide a password (refered as $YOUR_PASSWORD later) for the root credentials.
-
-	To further login with root the credentials are:<br>
 	Login: root<br>
 	Password: $YOUR_PASSWORD<br>
 
@@ -67,24 +73,24 @@ Laptop with at least 16 Gb memory (recommended 16 Gb, ideally 32 Gb)
 
 ###NB
 
-#1 The VM is automatically provisioned using Ansible playbooks. 
+1. The VM is automatically provisioned using Ansible playbooks. 
 
-#2 These playbooks install GitLab, GitLab Runner and Docker . 
+2. These playbooks install GitLab, GitLab Runner and Docker . 
 
-#3 GitLab is used as VCS and CI, whereas Docker is used to handle the integration environments.
+3. GitLab is used as VCS and CI, whereas Docker is used to handle the integration environments.
 
-#4 Upon starting the service up yet another user is requested to be created. Keep the credentials of this new user, as you'll need it for creating repositories.
+4. Upon starting the service up yet another user is requested to be created. Keep the credentials of this new user, as you'll need it for creating repositories.
 
-#5 In case you need to reset the password of a GitLab user follow the instructions given in this [link](https://docs.gitlab.com/ee/security/reset_root_password.html)
+5. In case you need to reset the password of a GitLab user follow the instructions given in this [link](https://docs.gitlab.com/ee/security/reset_root_password.html)
 
 
 # Use GitLab as VCS 
 
 The goal of this step is to make use of GitLab as a VCS. 
 
-1- Create SEEProduct project (in GitLab a project is a repository).<br>
-Follow the instructions to create the remote and local repositories.
-
+	Recommanded: Create new user in gitlab then 
+	1- Create a project (in GitLab a project is a repository).<br>
+	Follow the instructions to create the remote and local repositories.
 
 
 #NB:
@@ -95,7 +101,7 @@ Follow the instructions to create the remote and local repositories.
 	`~/<git_root_folder>/devops/SSE_Final_Project`
 
 
-	2- Commit and push to your created remote repository.
+	3- Commit and push to your created remote repository.
 
 
 # Automated build
@@ -130,32 +136,32 @@ automatically started.
 	`http://192.168.33.9/gitlab/`
 
 
-For the gitlab-ci token enter the generated token.<br>
+3. For the gitlab-ci token enter the generated token.<br>
 	`Example: 77NHS6kxWaqmEvkZK22r`
 
-For a description for the runner enter:<br>
+4. For a description for the runner enter:<br>
 	`[integration-server] docker`
 
-For the gitlab-ci tags for this runner enter:<br>
+5. For the gitlab-ci tags for this runner enter:<br>
 	`buildtags`
 
-For the executor enter:<br>
+6. For the executor enter:<br>
 	`docker`
 
-For the Docker image (eg. ruby:2.1) enter:<br>
+7. For the Docker image (eg. ruby:2.1) enter:<br>
 	`alpine:latest`
 
 
-3. Restart the runner:
+8. Restart the runner:
 
 	`sudo gitlab-runner restart`
 
 
-Congratualtion Your Automatic Build process is successfully Completed 
+### Congratualtion Your Automatic Build process is successfully Completed 
 
 
 
-#Setup stage environment 
+# Setup stage server environment 
 
 1. The Vagrantfile required to create and run the stage-server VM is provided in this repo. Go to the directory:
 
@@ -175,7 +181,7 @@ Open a browser, and try to access to these URLs:
 	http://192.168.33.17:8080
 	http://192.168.33.17:8080/manager/html
 ```
-**Notes**: 
+**NB**: 
 
 * User and password are the same: "admin".
 
@@ -196,21 +202,20 @@ Open a browser, and try to access to these URLs:
 	`http://192.168.33.9/gitlab/`
 
 
-For the gitlab-ci token enter the generated token.<br>
+3. For the gitlab-ci token enter the generated token.<br>
 	`Example: 77NHS6kxWaqmEvkZK22r`
 
-For a description for the runner enter:<br>
-	`[shell`
+4. For a description for the runner enter:<br>
+	`shell`
 
-For the gitlab-ci tags for this runner enter:<br>
+5. For the gitlab-ci tags for this runner enter:<br>
 	`testserver`
 
-For the executor enter:<br>
+6. For the executor enter:<br>
 	`shell`
 
 
-
-7. Restart the runner:
+7. Restart the runner using bellow command:
 ```
 	sudo gitlab-runner restart
 ```
@@ -223,41 +228,39 @@ For the executor enter:<br>
 	sudo visudo
 ```
 
-Now add the following to the bottom of the file:
+9. Now add the following to the bottom of the file:
 ```
 	gitlab-runner ALL=(ALL) NOPASSWD: ALL
 ```
 
-9.  Restart the staging environment
+10.  Restart the staging environment using bellow commands
 ```
 	exit
 	sudo vagrant reload
 ```
 
-**Note**: if the pipeline is not automatically started, then check in the settings of the project if "Auto DevOps" is selected.
+**NB**: if the pipeline is not automatically started, then check in the settings of the project if "Auto DevOps" is selected.
 To access to these settings, go to "Settings" -> "CI/CD" -> "Auto DevOps".
 
-
-go to 
+11. Go to the project directory 
 
 ```
-	cd ~/<git_root_folder>/devops/miniproject
+	cd ~/<git_root_folder>/devops/SSE_Final_Project
 ```
-modify add a new line to end of the modify.txt file  
+	modify add a new line to end of the readme.txt file  then
 
-commit and push file to repository
+	commit and push file to repository
 
 
-#Check if the link after completing the pipelining job
-```
+12. Check if the link after completing the pipelining job
+
 	http://192.168.33.17:8080/SSE_Final_Project/
+	
+
+### Congratualtion your stage server is running
 
 
-Congratualtion your stage server is running
-
-
-
-# Setup production environment
+# Setup production server environment
 
 1. The Vagrantfile required to create and run the production-server VM is provided in this repo. Go to the directory:
 
@@ -299,19 +302,17 @@ Open a browser, and try to access to these URLs:
 	`http://192.168.33.9/gitlab/`
 
 
-For the gitlab-ci token enter the generated token.<br>
+3. For the gitlab-ci token enter the generated token.<br>
 	`Example: 77NHS6kxWaqmEvkZK22r`
 
-For a description for the runner enter:<br>
+4. For a description for the runner enter:<br>
 	`shell`
 
-For the gitlab-ci tags for this runner enter:<br>
+5. For the gitlab-ci tags for this runner enter:<br>
 	`productiontags`
 
-For the executor enter:<br>
+6. For the executor enter:<br>
 	`shell`
-
-
 
 7. Restart the runner:
 ```
@@ -326,12 +327,12 @@ For the executor enter:<br>
 	sudo visudo
 ```
 
-Now add the following to the bottom of the file:
+9. Now add the following to the bottom of the file:
 ```
 	gitlab-runner ALL=(ALL) NOPASSWD: ALL
 ```
 
-9.  Restart the staging environment
+10 .  Restart the staging environment
 ```
 	exit
 	sudo vagrant reload
@@ -341,21 +342,21 @@ Now add the following to the bottom of the file:
 To access to these settings, go to "Settings" -> "CI/CD" -> "Auto DevOps".
 
 
-go to 
+11. Go to the project directory by 
 
 ```
-cd ~/<git_root_folder>/devops/SSE_Final_Project
+	cd ~/<git_root_folder>/devops/SSE_Final_Project
 ```
-modify add a new line to end of the readme.txt file  
+	modify add a new line to end of the readme.txt file  
 
-commit and push file to repository
+	commit and push file to repository
 
 
-#Check if the link after completing the pipelining job
-```
+11. Check if the link after completing the pipelining job
+
 	http://192.168.33.18:8080/SSE_Final_Project/
 
-Congratualtion production server is running
+### Congratualtion production server is running
 
 
    
