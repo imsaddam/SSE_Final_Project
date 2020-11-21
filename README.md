@@ -1,4 +1,4 @@
-# ******** Software Engineering Environments miniproject instruction ************ 
+# * Software Engineering Environments Miniproject Instruction *
 
 
 ************ Assumptions/Pre-requisites *******************
