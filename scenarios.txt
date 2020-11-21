@@ -1,0 +1,143 @@
+# Scenario 1
+
+## Goal
+A git repo named SSE_Final_Project is successfully created.  
+
+
+## Pre-conditions
+- Gitlab is up and running  
+- A user account different from root has been created
+
+  
+## Main Success Scenario
+1. Log in to GitLab using a Non root account
+2. Create project and name it SSE_Final_Project
+3. Follow the instructions to create the remote and local repositories as indicated by gitlab.
+4. Commit and push to the remote repository.
+
+
+## Notes
+- In GitLab a project is a repository.
+
+
+
+
+# Scenario 2
+
+## Goal
+The pipeline is successfully executed.  
+
+
+## Pre-conditions
+- Up and Run gitlab & gitlab runner
+- Tag for docker runner is specified
+- Created project repository on gitlab
+
+  
+## Main Success Scenario
+1. Clone created repository from gitlab
+2. Add `.gitlab-ci.yml` with following content
+
+```
+image: maven:latest
+
+stages:
+  - build
+  - upload
+  - testserver
+  - test
+  - productiontags
+  
+  build_app:
+  stage: build
+  tags:
+    - buildtags
+  script:
+    - mvn clean install
+
+
+
+upload_app:
+    stage: upload
+    tags:
+    - buildtags
+    script:
+    - echo "Deploy user todo list app"
+    artifacts:
+        name: "my-app"
+        paths:
+        - target/*.war
+
+
+deploy:
+  stage: testserver
+  tags:
+    - testserver
+  script:
+    - echo "Shutdown Tomcat"
+    - sudo sh $APACHE_BIN/shutdown.sh
+    
+    - echo "Deploy generated product into the stage environment" 
+    - sudo cp target/$PRODUCT_SNAPSHOT_NAME $APACHE_WEBAPPS
+    
+    - echo "Set right name"
+    - sudo mv $APACHE_WEBAPPS/$PRODUCT_SNAPSHOT_NAME $APACHE_WEBAPPS/$RESOURCE_NAME
+    
+    - echo "Set user asnd group rights"
+    - sudo chown tomcat:tomcat $APACHE_WEBAPPS/$RESOURCE_NAME
+    
+    - echo "Start up Tomcat"
+    - sudo sh $APACHE_BIN/startup.sh
+    
+    
+test_app:
+  stage: test
+  tags:
+    - buildtags
+  script: 
+    - mvn test
+
+
+deploy_production:
+  stage: productiontags
+  tags:
+    - productiontags
+  script:
+    - echo "Shutdown Tomcat"
+    - sudo sh $APACHE_BIN/shutdown.sh
+    
+    - echo "Deploy generated product into the production environment" 
+    - sudo cp target/$PRODUCT_SNAPSHOT_NAME $APACHE_WEBAPPS
+    
+    - echo "Set right name"
+    - sudo mv $APACHE_WEBAPPS/$PRODUCT_SNAPSHOT_NAME $APACHE_WEBAPPS/$RESOURCE_NAME
+    
+    - echo "Set user asnd group rights"
+    - sudo chown tomcat:tomcat $APACHE_WEBAPPS/$RESOURCE_NAME
+    
+    - echo "Start up Tomcat"
+    - sudo sh $APACHE_BIN/startup.sh
+    
+    
+```
+
+3. Push file to gitlab repository
+4. Go to project's pipelines and wait until the pipeline has finished its execution.
+
+
+## Notes
+- None.
+
+
+# Scenario 3
+
+## Goal
+The project is successfully run.  
+
+
+## Pre-conditions
+- The pipeline all stages are successfully executed. 
+
+1. Go to this link to check project is up and running : http://192.168.33.18:8080/SSE_Final_Project/
+
+
