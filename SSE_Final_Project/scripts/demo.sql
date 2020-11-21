@@ -53,10 +53,6 @@ CREATE TABLE `todos` (
 -- Dumping data for table `todos`
 --
 
-INSERT INTO `todos` (`id`, `description`, `is_done`, `target_date`, `username`, `title`) VALUES
-(8, 'Before november I have to complete my mini project', b'0', '2020-10-05 00:00:00.000000', NULL, 'Need to completed mini project '),
-(9, 'fdfdfdkfjkd', b'0', '2020-10-24 00:00:00.000000', NULL, 'fhdkfkdhfhd');
-
 -- --------------------------------------------------------
 
 --
@@ -74,9 +70,6 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
-
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`) VALUES
-(2, 'Saddam', 'Hossain', 'imsaddam', 'uni.lu8532');
 
 --
 -- Indexes for dumped tables
