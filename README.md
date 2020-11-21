@@ -1,4 +1,4 @@
-#Software Engineering Environments miniproject instruction 
+# Software Engineering Environments miniproject instruction 
 
 
 ************ Assumptions/Pre-requisites *******************
@@ -160,20 +160,20 @@ Congratualtion Your Automatic Build process is successfully Completed
 1. The Vagrantfile required to create and run the stage-server VM is provided in this repo. Go to the directory:
 
 ```
-cd ~/<git_root_folder>/devops/pipeline/stage-server
+	cd ~/<git_root_folder>/devops/pipeline/stage-server
 ```
 
 2. Start the staging environment and jump into it.
 ```
-sudo vagrant up
-sudo vagrant ssh
+	sudo vagrant up
+	sudo vagrant ssh
 ```
 
 3. Check Tomcat installation and configuration. 
 Open a browser, and try to access to these URLs:
 ```
-http://192.168.33.17:8080
-http://192.168.33.17:8080/manager/html
+	http://192.168.33.17:8080
+	http://192.168.33.17:8080/manager/html
 ```
 **Notes**: 
 
@@ -181,8 +181,8 @@ http://192.168.33.17:8080/manager/html
 
 * In case these URLs cannot be reached, then try to fix it by restarting tomcat:
 ```
-sudo /opt/tomcat/bin/shutdown.sh
-sudo /opt/tomcat/bin/startup.sh
+	sudo /opt/tomcat/bin/shutdown.sh
+	sudo /opt/tomcat/bin/startup.sh
 ```
 # Register the Runner for deploying to stage server 
 
@@ -241,7 +241,7 @@ To access to these settings, go to "Settings" -> "CI/CD" -> "Auto DevOps".
 go to 
 
 ```
-cd ~/<git_root_folder>/devops/miniproject
+	cd ~/<git_root_folder>/devops/miniproject
 ```
 modify add a new line to end of the modify.txt file  
 
@@ -250,7 +250,7 @@ commit and push file to repository
 
 #Check if the link after completing the pipelining job
 ```
-http://192.168.33.17:8080/SSE_Final_Project/
+	http://192.168.33.17:8080/SSE_Final_Project/
 
 
 Congratualtion your stage server is running
@@ -283,8 +283,8 @@ Open a browser, and try to access to these URLs:
 
 * In case these URLs cannot be reached, then try to fix it by restarting tomcat:
 ```
-sudo /opt/tomcat/bin/shutdown.sh
-sudo /opt/tomcat/bin/startup.sh
+	sudo /opt/tomcat/bin/shutdown.sh
+	sudo /opt/tomcat/bin/startup.sh
 ```
 
 # Register the Runner for deploying to stage server
