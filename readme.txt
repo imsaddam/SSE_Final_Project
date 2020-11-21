@@ -1,4 +1,4 @@
-*******************************************Software Engineering Environments miniproject instruction *************************************************************
+#Software Engineering Environments miniproject instruction 
 
 
 ************ Assumptions/Pre-requisites *******************
@@ -38,13 +38,12 @@ Laptop with at least 16 Gb memory (recommended 16 Gb, ideally 32 Gb)
     Check installation with the command ansible --version
 
 
-
-********************** Automate build process *********************************
-
+# Automate build process 
 
 
 
-*** Create integration server
+
+**** ***************Create integration server*******************
 
 	1- Get to the working directory
 
@@ -79,9 +78,7 @@ Laptop with at least 16 Gb memory (recommended 16 Gb, ideally 32 Gb)
 #5 In case you need to reset the password of a GitLab user follow the instructions given in this [link](https://docs.gitlab.com/ee/security/reset_root_password.html)
 
 
-
-
-*************************** Use GitLab as VCS ***************************
+# Use GitLab as VCS 
 
 The goal of this step is to make use of GitLab as a VCS. 
 
@@ -101,9 +98,7 @@ Follow the instructions to create the remote and local repositories.
 	2- Commit and push to your created remote repository.
 
 
-
-
-******************************** Automated build ****************************
+# Automated build
 
 The objective of this stage is to configure the GitLab project such that
 every time a developer publish a change on the remote repository, the build process is 
@@ -123,8 +118,7 @@ automatically started.
 	Command: `sudo vagrant ssh`
 
 
-
-************************************ Register the Runner for Building SSE_Final_Project **********************************************
+# Register the Runner for Building SSE_Final_Project 
 
 1. First of all, you need to execute the following command:
 
@@ -161,7 +155,7 @@ Congratualtion Your Automatic Build process is successfully Completed
 
 
 
-******************************Setup stage environment *****************************************
+#Setup stage environment 
 
 1. The Vagrantfile required to create and run the stage-server VM is provided in this repo. Go to the directory:
 
@@ -190,8 +184,7 @@ http://192.168.33.17:8080/manager/html
 sudo /opt/tomcat/bin/shutdown.sh
 sudo /opt/tomcat/bin/startup.sh
 ```
-
-*************************************** Register the Runner for deploying to stage server ****************************************
+# Register the Runner for deploying to stage server 
 
 1. First of all, you need to execute the following command:
 
@@ -264,27 +257,27 @@ Congratualtion your stage server is running
 
 
 
-#### Setup production environment
+# Setup production environment
 
 1. The Vagrantfile required to create and run the production-server VM is provided in this repo. Go to the directory:
 
 ```
-cd ~/<git_root_folder>/devops/pipeline/production-server
+	cd ~/<git_root_folder>/devops/pipeline/production-server
 ```
 
 2. Start the staging environment and jump into it.
 ```
-sudo vagrant up
-sudo vagrant ssh
+	sudo vagrant up
+	sudo vagrant ssh
 ```
 
 3. Check Tomcat installation and configuration. 
 Open a browser, and try to access to these URLs:
 ```
-http://192.168.33.18:8080
-http://192.168.33.18:8080/manager/html
+	http://192.168.33.18:8080
+	http://192.168.33.18:8080/manager/html
 ```
-**Notes**: 
+**NB**: 
 
 * User and password are the same: "admin".
 
@@ -294,54 +287,54 @@ sudo /opt/tomcat/bin/shutdown.sh
 sudo /opt/tomcat/bin/startup.sh
 ```
 
-### Register the Runner for deploying to stage server
+# Register the Runner for deploying to stage server
 
 1. First of all, you need to execute the following command:
 
-`sudo gitlab-runner register`
+	`sudo gitlab-runner register`
 
 2. Then enter the requested information as follows:
 
-For GitLab instance URL enter:<br>
-`http://192.168.33.9/gitlab/`
+	For GitLab instance URL enter:<br>
+	`http://192.168.33.9/gitlab/`
 
 
 For the gitlab-ci token enter the generated token.<br>
-`Example: 77NHS6kxWaqmEvkZK22r`
+	`Example: 77NHS6kxWaqmEvkZK22r`
 
 For a description for the runner enter:<br>
-`shell`
+	`shell`
 
 For the gitlab-ci tags for this runner enter:<br>
-`productiontags`
+	`productiontags`
 
 For the executor enter:<br>
-`shell`
+	`shell`
 
 
 
 7. Restart the runner:
 ```
-sudo gitlab-runner restart
+	sudo gitlab-runner restart
 ```
 
 
 
 8. Grant sudo permissions to the gitlab-runner
 ```
-sudo usermod -a -G sudo gitlab-runner
-sudo visudo
+	sudo usermod -a -G sudo gitlab-runner
+	sudo visudo
 ```
 
 Now add the following to the bottom of the file:
 ```
-gitlab-runner ALL=(ALL) NOPASSWD: ALL
+	gitlab-runner ALL=(ALL) NOPASSWD: ALL
 ```
 
 9.  Restart the staging environment
 ```
-exit
-sudo vagrant reload
+	exit
+	sudo vagrant reload
 ```
 
 **Note**: if the pipeline is not automatically started, then check in the settings of the project if "Auto DevOps" is selected.
@@ -353,14 +346,14 @@ go to
 ```
 cd ~/<git_root_folder>/devops/SSE_Final_Project
 ```
-modify add a new line to end of the modify.txt file  
+modify add a new line to end of the readme.txt file  
 
 commit and push file to repository
 
 
 #Check if the link after completing the pipelining job
 ```
-http://192.168.33.18:8080/SSE_Final_Project/
+	http://192.168.33.18:8080/SSE_Final_Project/
 
 Congratualtion production server is running
 
